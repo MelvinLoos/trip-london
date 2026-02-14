@@ -3,53 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
     <title>Londen 2026: Vader & Zoon Reisplanner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom Font Import if needed, using system fonts for performance */
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        
-        /* Smooth Scrolling */
-        html { scroll-behavior: smooth; }
+    <meta name="description" content="Vader & Zoon weekend in Londen - Reisplanner met offline ondersteuning voor een memorabele reis">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1c1917">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Londen 2026">
+    
+    <!-- PWA Manifest and Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f5f5f4; }
-        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
-    </style>
-    <!-- Chosen Palette: Stone & Amber (Warm Neutrals for a 'Slow Travel' vibe) -->
-    <!-- Application Structure Plan (Trip Mode):
-         1. Header: Context.
-         2. Dashboard: Weather only (Immediate utility).
-         3. Itinerary: The core day-to-day guide.
-         4. Locations: Reference list with DIRECT EXTERNAL LINKS.
-         5. Footer: Emergency & Logistics with WORKING LINKS.
-    -->
-    <!-- Visualization & Content Choices:
-         1. Weather Cards: HTML/CSS Grid with Emojis. Goal: Quick preparation.
-         2. Interactive Timeline: JS-driven DOM manipulation. Goal: Narrative flow of the trip.
-         3. Location Cards: Filterable list with 'Visit Website' buttons. Goal: Actionable info.
-         -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-stone-100 text-stone-800 antialiased">
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-stone-900 text-stone-100 shadow-lg">
+    <nav class="sticky top-0 z-50 bg-stone-900/80 backdrop-blur-md text-stone-100 shadow-lg transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🇬🇧</span>
-                    <span class="font-bold text-lg tracking-wide">LONDEN 2026</span>
+                <div class="flex items-center gap-2 group cursor-pointer">
+                    <span class="text-2xl transition-transform group-hover:scale-110">🇬🇧</span>
+                    <span class="font-bold text-lg tracking-wide bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">LONDEN 2026</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#dashboard" class="hover:text-amber-400 transition-colors">Weer & Info</a>
                     <a href="#itinerary" class="hover:text-amber-400 transition-colors">Dagplanning</a>
                     <a href="#locations" class="hover:text-amber-400 transition-colors">Locaties</a>
                 </div>
-                <!-- Mobile Menu Button (Simple JS toggle implementation inline for brevity) -->
-                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-stone-300 hover:text-white">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-stone-300 hover:text-white">
                     <span class="text-2xl">☰</span>
                 </button>
             </div>
@@ -62,18 +55,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-stone-200 border-b border-stone-300">
-        <div class="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold text-stone-800 sm:text-5xl mb-4">
+    <header class="hero-gradient border-b border-stone-300 relative overflow-hidden">
+        <div class="absolute inset-0 bg-stone-900/5 pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl font-extrabold text-stone-900 sm:text-6xl mb-6 tracking-tight">
                 Vader & Zoon Weekend
             </h1>
-            <p class="text-xl text-stone-600 max-w-2xl mx-auto">
-                Een memorabele reis voor Melvin & Roy. Focus op techniek, sfeer, voetbal en comfort.
+            <p class="text-xl text-stone-700 max-w-2xl mx-auto font-medium leading-relaxed">
+                Een memorabele reis voor Melvin & Roy. <br class="hidden sm:block"> Focus op techniek, sfeer, voetbal en comfort.
             </p>
-            <div class="mt-6 inline-flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-sm text-sm font-medium">
-                <span class="flex items-center gap-1">📅 15 - 18 Februari 2026</span>
+            <div class="mt-8 inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-3xl shadow-xl text-sm font-bold text-stone-800 border border-white">
+                <span class="flex items-center gap-2">📅 15 - 18 Feb 2026</span>
                 <span class="h-4 w-px bg-stone-300"></span>
-                <span class="flex items-center gap-1">📍 Holiday Inn Limehouse</span>
+                <span class="flex items-center gap-2">📍 Limehouse, London</span>
             </div>
         </div>
     </header>
@@ -243,200 +237,7 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // --- DATA STORAGE ---
-        // Data from CSV and Markdown files
-        const itineraryData = [
-            {
-                day: 1,
-                date: "Zondag 15 Februari",
-                title: "Aankomst & Sfeer",
-                weather: "🌧️ Regen (75%)",
-                items: [
-                    { time: "17:45", title: "Landing London City Airport", desc: "Aankomst vlucht. Direct door naar DLR.", type: "Logistiek" },
-                    { time: "18:15", title: "DLR naar Limehouse", desc: "Korte rit van 15-20 min. Mooi uitzicht voorin de trein.", type: "Logistiek" },
-                    { time: "19:00", title: "Check-in & Diner", desc: "Diner bij 'The Grapes'. Historische pub op 6 min lopen.", type: "Eten/Drink", highlight: true, note: "Tip: Eigendom van Ian McKellen. Perfecte start." }
-                ]
-            },
-            {
-                day: 2,
-                date: "Maandag 16 Februari",
-                title: "Rivier & Historie",
-                weather: "🌦️ Lichte Regen (35%)",
-                items: [
-                    { time: "09:15", title: "Uber Boat naar Tower", desc: "Vanaf Limehouse Pier. Overdekt genieten van de skyline.", type: "Logistiek" },
-                    { time: "10:00", title: "Tower of London", desc: "Focus op Witte Toren en Kroonjuwelen (binnen).", type: "Stad & Sfeer", highlight: true, note: "Gebruik Explorer Pass." },
-                    { time: "13:00", title: "Lunch", desc: "Snel broodje op Southbank of bij Tower Hill.", type: "Eten/Drink" },
-                    { time: "14:00", title: "London Transport Museum", desc: "Covent Garden. Techniek van bussen en treinen.", type: "Techniek", note: "Volledig overdekt." },
-                    { time: "18:30", title: "Diner bij Toba", desc: "Indonesisch dineren bij Piccadilly Circus.", type: "Eten/Drink", highlight: true }
-                ]
-            },
-            {
-                day: 3,
-                date: "Dinsdag 17 Februari",
-                title: "Voetbal & Techniek",
-                weather: "☁️ Bewolkt (Koud)",
-                items: [
-                    { time: "11:00", title: "Spurs Stadium Tour", desc: "Technisch hoogstandje: uitschuifbaar veld.", type: "Voetbal", highlight: true, note: "Vooraf tijdslot reserveren!" },
-                    { time: "14:00", title: "Mayfair Showrooms", desc: "Wandelen langs Bentley, Ferrari, RR.", type: "Techniek", note: "Slecht weer: Park Lane showrooms zijn binnen." },
-                    { time: "16:00", title: "Brick Lane Snack", desc: "Beigel Bake Salt Beef Beigel.", type: "Eten/Drink" },
-                    { time: "18:00", title: "Rustavond", desc: "Relaxen in Limehouse.", type: "Logistiek" }
-                ]
-            },
-            {
-                day: 4,
-                date: "Woensdag 18 Februari",
-                title: "Architectuur & Vertrek",
-                weather: "🌨️ Lichte Sneeuw (45%)",
-                items: [
-                    { time: "09:00", title: "The Barbican", desc: "Brutalisme en binnentuinen (Conservatory).", type: "Fotografie" },
-                    { time: "11:30", title: "Lunch Spitalfields", desc: "Overdekte markt met veel opties.", type: "Eten/Drink" },
-                    { time: "13:15", title: "Naar Vliegveld", desc: "DLR terug naar LCY.", type: "Logistiek" },
-                    { time: "15:15", title: "Vlucht Vertrekt", desc: "Einde van de trip.", type: "Logistiek" }
-                ]
-            }
-        ];
-
-        // Locations with added URLS
-        const locations = [
-            { name: "Tottenham Hotspur Stadium (Tour)", category: "Voetbal", roy: "Technisch hoogstandje, uitschuifbaar veld.", photo: 5, effort: "Gemiddeld", transport: "Overground via Stratford", url: "https://www.tottenhamhotspurstadium.com/see-do/products/stadium-tour-for-one/" },
-            { name: "Loftus Road (QPR)", category: "Voetbal", roy: "Traditionele sfeer, compacte architectuur.", photo: 4, effort: "Gemiddeld", transport: "Central Line", url: "https://www.qpr.co.uk/" },
-            { name: "Mayfair Showrooms", category: "Techniek/Auto's", roy: "Technische specs, luxe lak en motoren.", photo: 4, effort: "Gemiddeld", transport: "Central Line (Bond St)", url: "https://www.google.com/maps/search/luxury+car+showrooms+mayfair+london/" },
-            { name: "London Transport Museum", category: "Techniek/Auto's", roy: "Evolutie techniek, stoom tot metro.", photo: 5, effort: "Gemiddeld", transport: "Covent Garden", url: "https://www.ltmuseum.co.uk/visit" },
-            { name: "The Barbican Estate", category: "Fotografie", roy: "Brutalistisch, patronen, texturen.", photo: 5, effort: "Gemiddeld", transport: "DLR naar Bank", url: "https://www.barbican.org.uk" },
-            { name: "Kings Cross Gasholders", category: "Techniek/Auto's", roy: "Industrieel erfgoed herbestemd.", photo: 4, effort: "Laag", transport: "Northern Line", url: "https://www.gasholderslondon.co.uk/" },
-            { name: "Columbia Road Market", category: "Fotografie", roy: "Kleurrijk spektakel, straatfotografie.", photo: 4, effort: "Gemiddeld", transport: "Overground Hoxton", url: "https://columbiaroad.info/" },
-            { name: "Toba", category: "Eten/Drink", roy: "Verfijnd Indonesisch, Senang gevoel.", photo: 3, effort: "Laag", transport: "Piccadilly Circus", url: "https://tobalondon.co.uk/" },
-            { name: "Bali Bali", category: "Eten/Drink", roy: "Traditionele smaken, familie-erfgoed.", photo: 2, effort: "Laag", transport: "Soho", url: "https://balibali.co.uk/" },
-            { name: "The Grapes", category: "Eten/Drink", roy: "Historie, maritiem, eigen buurt.", photo: 4, effort: "Laag", transport: "Lopen", url: "https://www.thegrapes.co.uk/" },
-            { name: "London City Airport", category: "Logistiek", roy: "Comfortabel aankomen.", photo: 2, effort: "Laag", transport: "DLR", url: "https://www.londoncityairport.com/" },
-            { name: "Brick Lane (Beigel)", category: "Eten/Drink", roy: "Culinair icoon.", photo: 4, effort: "Gemiddeld", transport: "Overground", url: "https://bricklanebeigel.co.uk/" },
-            { name: "Tower of London", category: "Stad & Sfeer", roy: "Historie en kroonjuwelen.", photo: 5, effort: "Gemiddeld", transport: "Uber Boat / DLR", url: "https://www.hrp.org.uk/tower-of-london/" }
-        ];
-
-        // --- DOM ELEMENTS & RENDER FUNCTIONS ---
-
-        // 1. Itinerary Renderer
-        function switchDay(dayIndex) {
-            // Update tabs
-            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
-                if (idx === dayIndex) {
-                    btn.classList.add('border-amber-500', 'text-amber-700', 'bg-white');
-                    btn.classList.remove('border-transparent');
-                } else {
-                    btn.classList.remove('border-amber-500', 'text-amber-700', 'bg-white');
-                    btn.classList.add('border-transparent');
-                }
-            });
-
-            // Render Content
-            const day = itineraryData[dayIndex];
-            const container = document.getElementById('day-content');
-            
-            let html = `
-                <div class="animate-fade-in">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-xl font-bold text-stone-800">${day.date}: ${day.title}</h3>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">${day.weather}</span>
-                    </div>
-                    <div class="space-y-6 relative border-l-2 border-stone-200 ml-3 pl-8 pb-4">
-            `;
-
-            day.items.forEach(item => {
-                const isHighlight = item.highlight ? 'ring-2 ring-amber-400 bg-amber-50' : 'bg-white';
-                const icon = getIcon(item.type);
-                
-                html += `
-                    <div class="relative ${isHighlight} p-4 rounded-lg border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="absolute -left-[41px] top-4 h-6 w-6 rounded-full bg-stone-100 border-2 border-stone-300 flex items-center justify-center text-xs">
-                            ${icon}
-                        </span>
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
-                            <div>
-                                <span class="text-sm font-bold text-amber-600">${item.time}</span>
-                                <h4 class="text-lg font-semibold text-stone-900">${item.title}</h4>
-                                <p class="text-stone-600 mt-1">${item.desc}</p>
-                            </div>
-                            ${item.type !== 'Logistiek' ? `<span class="text-xs px-2 py-1 bg-stone-100 text-stone-500 rounded self-start sm:self-auto whitespace-nowrap">${item.type}</span>` : ''}
-                        </div>
-                        ${item.note ? `
-                            <div class="mt-3 pt-3 border-t border-stone-200/50 flex items-center gap-2 text-sm text-stone-500 italic">
-                                <span>💡</span> ${item.note}
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            });
-
-            html += `</div></div>`;
-            container.innerHTML = html;
-        }
-
-        function getIcon(type) {
-            if (type.includes("Voetbal")) return "⚽";
-            if (type.includes("Techniek")) return "⚙️";
-            if (type.includes("Foto")) return "📷";
-            if (type.includes("Eten")) return "🍽️";
-            if (type.includes("Stad")) return "🏰";
-            return "🚇";
-        }
-
-        // 2. Location List Renderer
-        function renderLocations(filter = "all") {
-            const grid = document.getElementById('locationGrid');
-            grid.innerHTML = "";
-
-            locations.forEach(loc => {
-                if (filter !== "all" && loc.category !== filter && !loc.category.includes(filter)) return;
-
-                const stars = "⭐".repeat(loc.photo) + "<span class='text-stone-300'>" + "⭐".repeat(5 - loc.photo) + "</span>";
-                
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-lg border border-stone-200 shadow-sm p-5 hover:shadow-md transition-all flex flex-col h-full";
-                card.innerHTML = `
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600">${loc.category}</span>
-                        <span class="text-xs px-2 py-1 bg-stone-100 rounded-full text-stone-600">${loc.effort}</span>
-                    </div>
-                    <h4 class="font-bold text-lg text-stone-800 mb-2">${loc.name}</h4>
-                    <p class="text-sm text-stone-600 mb-4 flex-grow">"${loc.roy}"</p>
-                    
-                    <div class="space-y-3 pt-4 border-t border-stone-100 text-sm">
-                        <div class="flex justify-between">
-                            <span class="text-stone-500">Foto Potentie:</span>
-                            <span>${stars}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-stone-500">Vervoer:</span>
-                            <span class="text-right text-stone-800 font-medium">${loc.transport}</span>
-                        </div>
-                        <a href="${loc.url}" target="_blank" class="block w-full text-center py-2 px-4 bg-stone-800 hover:bg-amber-600 text-white rounded font-medium transition-colors mt-2">
-                            Bezoek Website 🌐
-                        </a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Init Tabs
-            switchDay(0);
-            
-            // Init Location Grid
-            renderLocations();
-            document.getElementById('categoryFilter').addEventListener('change', (e) => renderLocations(e.target.value));
-        });
-
-        // Simple Fade In Animation Style
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-            .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        `;
-        document.head.appendChild(style);
-    </script>
+    <!-- Vite Entry Point -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

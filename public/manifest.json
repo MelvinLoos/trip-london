@@ -1,0 +1,30 @@
+{
+  "name": "Londen 2026: Vader & Zoon Reisplanner",
+  "short_name": "Londen 2026",
+  "description": "Trip planner voor Vader & Zoon weekend in Londen met offline ondersteuning",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1c1917",
+  "background_color": "#f5f5f4",
+  "orientation": "any",
+  "categories": ["travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

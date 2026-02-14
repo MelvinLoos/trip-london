@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+.env
+dist/
+.netlify/
+index.html.backup
+*.log
+.vscode/
+.idea/
