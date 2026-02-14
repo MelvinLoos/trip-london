@@ -51,19 +51,20 @@ const itineraryData = [
 ];
 
 const locations = [
-    { name: "Tottenham Hotspur Stadium (Tour)", category: "Voetbal", roy: "Technisch hoogstandje, uitschuifbaar veld.", photo: 5, effort: "Gemiddeld", transport: "Overground via Stratford", url: "https://www.tottenhamhotspurstadium.com/see-do/products/stadium-tour-for-one/" },
-    { name: "Loftus Road (QPR)", category: "Voetbal", roy: "Traditionele sfeer, compacte architectuur.", photo: 4, effort: "Gemiddeld", transport: "Central Line", url: "https://www.qpr.co.uk/" },
-    { name: "Mayfair Showrooms", category: "Techniek/Auto's", roy: "Technische specs, luxe lak en motoren.", photo: 4, effort: "Gemiddeld", transport: "Central Line (Bond St)", url: "https://www.google.com/maps/search/luxury+car+showrooms+mayfair+london/" },
-    { name: "London Transport Museum", category: "Techniek/Auto's", roy: "Evolutie techniek, stoom tot metro.", photo: 5, effort: "Gemiddeld", transport: "Covent Garden", url: "https://www.ltmuseum.co.uk/visit" },
-    { name: "The Barbican Estate", category: "Fotografie", roy: "Brutalistisch, patronen, texturen.", photo: 5, effort: "Gemiddeld", transport: "DLR naar Bank", url: "https://www.barbican.org.uk" },
-    { name: "Kings Cross Gasholders", category: "Techniek/Auto's", roy: "Industrieel erfgoed herbestemd.", photo: 4, effort: "Laag", transport: "Northern Line", url: "https://www.gasholderslondon.co.uk/" },
-    { name: "Columbia Road Market", category: "Fotografie", roy: "Kleurrijk spektakel, straatfotografie.", photo: 4, effort: "Gemiddeld", transport: "Overground Hoxton", url: "https://columbiaroad.info/" },
-    { name: "Toba", category: "Eten/Drink", roy: "Verfijnd Indonesisch, Senang gevoel.", photo: 3, effort: "Laag", transport: "Piccadilly Circus", url: "https://tobalondon.co.uk/" },
-    { name: "Bali Bali", category: "Eten/Drink", roy: "Traditionele smaken, familie-erfgoed.", photo: 2, effort: "Laag", transport: "Soho", url: "https://balibali.co.uk/" },
-    { name: "The Grapes", category: "Eten/Drink", roy: "Historie, maritiem, eigen buurt.", photo: 4, effort: "Laag", transport: "Lopen", url: "https://www.thegrapes.co.uk/" },
-    { name: "London City Airport", category: "Logistiek", roy: "Comfortabel aankomen.", photo: 2, effort: "Laag", transport: "DLR", url: "https://www.londoncityairport.com/" },
-    { name: "Brick Lane (Beigel)", category: "Eten/Drink", roy: "Culinair icoon.", photo: 4, effort: "Gemiddeld", transport: "Overground", url: "https://bricklanebeigel.co.uk/" },
-    { name: "Tower of London", category: "Stad & Sfeer", roy: "Historie en kroonjuwelen.", photo: 5, effort: "Gemiddeld", transport: "Uber Boat / DLR", url: "https://www.hrp.org.uk/tower-of-london/" }
+    { name: "Tottenham Hotspur Stadium (Tour)", category: "Voetbal", roy: "Technisch hoogstandje, uitschuifbaar veld.", photo: 5, effort: "Gemiddeld", transport: "Overground via Stratford", url: "https://www.tottenhamhotspurstadium.com/see-do/products/stadium-tour-for-one/", lat: 51.6043, lng: -0.0662 },
+    { name: "Loftus Road (QPR)", category: "Voetbal", roy: "Traditionele sfeer, compacte architectuur.", photo: 4, effort: "Gemiddeld", transport: "Central Line", url: "https://www.qpr.co.uk/", lat: 51.5093, lng: -0.2322 },
+    { name: "Mayfair Showrooms", category: "Techniek/Auto's", roy: "Technische specs, luxe lak en motoren.", photo: 4, effort: "Gemiddeld", transport: "Central Line (Bond St)", url: "https://www.google.com/maps/search/luxury+car+showrooms+mayfair+london/", lat: 51.5095, lng: -0.1460 },
+    { name: "London Transport Museum", category: "Techniek/Auto's", roy: "Evolutie techniek, stoom tot metro.", photo: 5, effort: "Gemiddeld", transport: "Covent Garden", url: "https://www.ltmuseum.co.uk/visit", lat: 51.5121, lng: -0.1213 },
+    { name: "The Barbican Estate", category: "Fotografie", roy: "Brutalistisch, patronen, texturen.", photo: 5, effort: "Gemiddeld", transport: "DLR naar Bank", url: "https://www.barbican.org.uk", lat: 51.5200, lng: -0.0939 },
+    { name: "Kings Cross Gasholders", category: "Techniek/Auto's", roy: "Industrieel erfgoed herbestemd.", photo: 4, effort: "Laag", transport: "Northern Line", url: "https://www.gasholderslondon.co.uk/", lat: 51.5365, lng: -0.1245 },
+    { name: "Columbia Road Market", category: "Fotografie", roy: "Kleurrijk spektakel, straatfotografie.", photo: 4, effort: "Gemiddeld", transport: "Overground Hoxton", url: "https://columbiaroad.info/", lat: 51.5293, lng: -0.0734 },
+    { name: "Toba", category: "Eten/Drink", roy: "Verfijnd Indonesisch, Senang gevoel.", photo: 3, effort: "Laag", transport: "Piccadilly Circus", url: "https://tobalondon.co.uk/", lat: 51.5085, lng: -0.1340 },
+    { name: "Bali Bali", category: "Eten/Drink", roy: "Traditionele smaken, familie-erfgoed.", photo: 2, effort: "Laag", transport: "Soho", url: "https://balibali.co.uk/", lat: 51.5134, lng: -0.1293 },
+    { name: "The Grapes", category: "Eten/Drink", roy: "Historie, maritiem, eigen buurt.", photo: 4, effort: "Laag", transport: "Lopen", url: "https://www.thegrapes.co.uk/", lat: 51.5094, lng: -0.0385 },
+    { name: "London City Airport", category: "Logistiek", roy: "Comfortabel aankomen.", photo: 2, effort: "Laag", transport: "DLR", url: "https://www.londoncityairport.com/", lat: 51.5048, lng: 0.0495 },
+    { name: "Brick Lane (Beigel)", category: "Eten/Drink", roy: "Culinair icoon.", photo: 4, effort: "Gemiddeld", transport: "Overground", url: "https://bricklanebeigel.co.uk/", lat: 51.5247, lng: -0.0718 },
+    { name: "Tower of London", category: "Stad & Sfeer", roy: "Historie en kroonjuwelen.", photo: 5, effort: "Gemiddeld", transport: "Uber Boat / DLR", url: "https://www.hrp.org.uk/tower-of-london/", lat: 51.5081, lng: -0.0759 },
+    { name: "Holiday Inn Limehouse", category: "Logistiek", roy: "Jullie Hotel", photo: 1, effort: "Laag", transport: "DLR Limehouse", url: "https://www.ihg.com/holidayinnexpress/hotels/us/en/london/lonlh/hoteldetail", lat: 51.5117, lng: -0.0385 }
 ];
 
 // --- HELPER FUNCTIONS ---
@@ -178,6 +179,31 @@ window.renderLocations = function(filter = "all") {
     });
 }
 
+// --- MAP FUNCTION ---
+window.initMap = function() {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer || typeof L === 'undefined') return;
+
+    // Centered roughly on Central/East London
+    const map = L.map('map').setView([51.52, -0.09], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    locations.forEach(loc => {
+        if (loc.lat && loc.lng) {
+            const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+            marker.bindPopup(`
+                <div class="text-center">
+                    <strong class="text-sm font-bold text-stone-900">${loc.name}</strong><br>
+                    <span class="text-xs text-stone-500">${loc.category}</span>
+                </div>
+            `);
+        }
+    });
+}
+
 // --- INITIALIZATION ---
 // Dit is de functie die we vanuit main.js aanroepen
 export function initApp() {
@@ -186,7 +212,6 @@ export function initApp() {
     const today = new Date();
     
     // Stel de trip startdatum in: 15 Februari 2026
-    // Let op: Maanden zijn 0-indexed in JS, dus 1 = Februari
     const tripStartDate = new Date(2026, 1, 15);
     
     // Zet beide datums naar middernacht om puur op dagen te vergelijken
@@ -200,10 +225,6 @@ export function initApp() {
     const diffTime = current - start;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     
-    // Logica:
-    // Als diffDays < 0 (het is voor de trip): index 0
-    // Als diffDays >= 0 en < lengte (tijdens trip): index = diffDays
-    // Als diffDays >= lengte (na trip): index 0 (of laatste dag, maar 0 is veilige default)
     if (diffDays >= 0 && diffDays < itineraryData.length) {
         startDayIndex = diffDays;
     }
@@ -211,10 +232,13 @@ export function initApp() {
     // 2. Initialiseer de tabs op de berekende dag
     window.switchDay(startDayIndex);
     
-    // 3. Initialiseer de locaties
+    // 3. Initialiseer de kaart
+    window.initMap();
+    
+    // 4. Initialiseer de locaties
     window.renderLocations();
     
-    // 4. Koppel de filter dropdown
+    // 5. Koppel de filter dropdown
     const filterSelect = document.getElementById('categoryFilter');
     if (filterSelect) {
         filterSelect.addEventListener('change', (e) => window.renderLocations(e.target.value));
