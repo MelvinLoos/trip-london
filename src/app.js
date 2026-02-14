@@ -1,5 +1,4 @@
 // --- DATA STORAGE ---
-// Data from CSV and Markdown files
 const itineraryData = [
     {
         day: 1,
@@ -43,7 +42,7 @@ const itineraryData = [
         title: "Architectuur & Vertrek",
         weather: "🌨️ Lichte Sneeuw (45%)",
         items: [
-            { time: "09:00", title: "The Barbican", desc: "Brutalisme en binnentuinen (Conservatory).", type: "Fotografie" },
+            { time: "09:00", title: "The Barbican", desc: "Brutalisme en binnentuinen (Conservatory).", type: "Fotografie", note: "Gratis toegang! Reserveer vooraf wel een (gratis) tijdslot voor de Conservatory." },
             { time: "11:30", title: "Lunch Spitalfields", desc: "Overdekte markt met veel opties.", type: "Eten/Drink" },
             { time: "13:15", title: "Naar Vliegveld", desc: "DLR terug naar LCY.", type: "Logistiek" },
             { time: "15:15", title: "Vlucht Vertrekt", desc: "Einde van de trip.", type: "Logistiek" }
@@ -51,7 +50,6 @@ const itineraryData = [
     }
 ];
 
-// Locations with added URLS
 const locations = [
     { name: "Tottenham Hotspur Stadium (Tour)", category: "Voetbal", roy: "Technisch hoogstandje, uitschuifbaar veld.", photo: 5, effort: "Gemiddeld", transport: "Overground via Stratford", url: "https://www.tottenhamhotspurstadium.com/see-do/products/stadium-tour-for-one/" },
     { name: "Loftus Road (QPR)", category: "Voetbal", roy: "Traditionele sfeer, compacte architectuur.", photo: 4, effort: "Gemiddeld", transport: "Central Line", url: "https://www.qpr.co.uk/" },
@@ -68,10 +66,21 @@ const locations = [
     { name: "Tower of London", category: "Stad & Sfeer", roy: "Historie en kroonjuwelen.", photo: 5, effort: "Gemiddeld", transport: "Uber Boat / DLR", url: "https://www.hrp.org.uk/tower-of-london/" }
 ];
 
-// --- DOM ELEMENTS & RENDER FUNCTIONS ---
+// --- HELPER FUNCTIONS ---
 
-// 1. Itinerary Renderer
-function switchDay(dayIndex) {
+function getIcon(type) {
+    if (type.includes("Voetbal")) return "⚽";
+    if (type.includes("Techniek")) return "⚙️";
+    if (type.includes("Foto")) return "📷";
+    if (type.includes("Eten")) return "🍽️";
+    if (type.includes("Stad")) return "🏰";
+    return "🚇";
+}
+
+// --- CORE FUNCTIONS (Attached to window for HTML access) ---
+
+// We koppelen deze functie aan window zodat 'onclick="switchDay(0)"' in de HTML werkt
+window.switchDay = function(dayIndex) {
     // Update tabs
     document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
         if (idx === dayIndex) {
@@ -87,6 +96,9 @@ function switchDay(dayIndex) {
     const day = itineraryData[dayIndex];
     const container = document.getElementById('day-content');
     
+    // Safety check if element exists
+    if (!container) return;
+
     let html = `
         <div class="animate-fade-in">
             <div class="flex items-center justify-between mb-6">
@@ -97,29 +109,25 @@ function switchDay(dayIndex) {
     `;
 
     day.items.forEach(item => {
-        const isHighlight = item.highlight ? 'ring-2 ring-amber-400/50 bg-amber-50/50 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm';
+        const isHighlight = item.highlight ? 'ring-2 ring-amber-400 bg-amber-50' : 'bg-white';
         const icon = getIcon(item.type);
         
         html += `
-            <div class="relative ${isHighlight} p-6 rounded-2xl border border-stone-200/60 shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <span class="absolute -left-[45px] top-6 h-8 w-8 rounded-full bg-white border-2 border-stone-300 flex items-center justify-center text-sm shadow-sm group-hover:scale-110 group-hover:border-amber-400 transition-all">
+            <div class="relative ${isHighlight} p-4 rounded-lg border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                <span class="absolute -left-[41px] top-4 h-6 w-6 rounded-full bg-stone-100 border-2 border-stone-300 flex items-center justify-center text-xs">
                     ${icon}
                 </span>
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
-                    <div class="flex-grow">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-sm font-black text-amber-600 tracking-tighter">${item.time}</span>
-                            <span class="h-1 w-1 bg-stone-300 rounded-full"></span>
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">${item.type}</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition-colors">${item.title}</h4>
-                        <p class="text-stone-600 leading-relaxed">${item.desc}</p>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                    <div>
+                        <span class="text-sm font-bold text-amber-600">${item.time}</span>
+                        <h4 class="text-lg font-semibold text-stone-900">${item.title}</h4>
+                        <p class="text-stone-600 mt-1">${item.desc}</p>
                     </div>
+                    ${item.type !== 'Logistiek' ? `<span class="text-xs px-2 py-1 bg-stone-100 text-stone-500 rounded self-start sm:self-auto whitespace-nowrap">${item.type}</span>` : ''}
                 </div>
                 ${item.note ? `
-                    <div class="mt-4 pt-4 border-t border-stone-200/50 flex items-start gap-3 text-sm text-stone-600 italic leading-relaxed">
-                        <span class="text-amber-500 font-bold shrink-0">💡 PRO TIP:</span> 
-                        <span>${item.note}</span>
+                    <div class="mt-3 pt-3 border-t border-stone-200/50 flex items-center gap-2 text-sm text-stone-500 italic">
+                        <span>💡</span> ${item.note}
                     </div>
                 ` : ''}
             </div>
@@ -130,18 +138,11 @@ function switchDay(dayIndex) {
     container.innerHTML = html;
 }
 
-function getIcon(type) {
-    if (type.includes("Voetbal")) return "⚽";
-    if (type.includes("Techniek")) return "⚙️";
-    if (type.includes("Foto")) return "📷";
-    if (type.includes("Eten")) return "🍽️";
-    if (type.includes("Stad")) return "🏰";
-    return "🚇";
-}
-
-// 2. Location List Renderer
-function renderLocations(filter = "all") {
+// Ook deze functie moet globaal zijn voor de filter dropdown
+window.renderLocations = function(filter = "all") {
     const grid = document.getElementById('locationGrid');
+    if (!grid) return;
+    
     grid.innerHTML = "";
 
     locations.forEach(loc => {
@@ -150,26 +151,26 @@ function renderLocations(filter = "all") {
         const stars = "⭐".repeat(loc.photo) + "<span class='text-stone-300'>" + "⭐".repeat(5 - loc.photo) + "</span>";
         
         const card = document.createElement('div');
-        card.className = "bg-white rounded-2xl border border-stone-200 shadow-sm p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group";
+        card.className = "bg-white rounded-lg border border-stone-200 shadow-sm p-5 hover:shadow-md transition-all flex flex-col h-full";
         card.innerHTML = `
-            <div class="flex justify-between items-start mb-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-amber-600 bg-amber-50 px-2 py-1 rounded-md">${loc.category}</span>
-                <span class="text-xs px-2 py-1 bg-stone-100 rounded-full text-stone-600 font-medium">${loc.effort}</span>
+            <div class="flex justify-between items-start mb-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-600">${loc.category}</span>
+                <span class="text-xs px-2 py-1 bg-stone-100 rounded-full text-stone-600">${loc.effort}</span>
             </div>
-            <h4 class="font-bold text-xl text-stone-900 mb-2 group-hover:text-amber-600 transition-colors">${loc.name}</h4>
-            <p class="text-sm text-stone-600 mb-6 flex-grow leading-relaxed italic">"${loc.roy}"</p>
+            <h4 class="font-bold text-lg text-stone-800 mb-2">${loc.name}</h4>
+            <p class="text-sm text-stone-600 mb-4 flex-grow">"${loc.roy}"</p>
             
             <div class="space-y-3 pt-4 border-t border-stone-100 text-sm">
-                <div class="flex justify-between items-center">
-                    <span class="text-stone-500 font-medium">Foto Potentie:</span>
-                    <span class="filter drop-shadow-sm">${stars}</span>
+                <div class="flex justify-between">
+                    <span class="text-stone-500">Foto Potentie:</span>
+                    <span>${stars}</span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-stone-500 font-medium">Vervoer:</span>
-                    <span class="text-right text-stone-900 font-semibold">${loc.transport}</span>
+                <div class="flex justify-between">
+                    <span class="text-stone-500">Vervoer:</span>
+                    <span class="text-right text-stone-800 font-medium">${loc.transport}</span>
                 </div>
-                <a href="${loc.url}" target="_blank" class="block w-full text-center py-3 px-4 bg-stone-900 hover:bg-amber-600 text-white rounded-xl font-bold transition-all duration-300 mt-4 shadow-lg hover:shadow-amber-200">
-                    Bezoek Website ↗
+                <a href="${loc.url}" target="_blank" class="block w-full text-center py-2 px-4 bg-stone-800 hover:bg-amber-600 text-white rounded font-medium transition-colors mt-2">
+                    Bezoek Website 🌐
                 </a>
             </div>
         `;
@@ -178,23 +179,44 @@ function renderLocations(filter = "all") {
 }
 
 // --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Init Tabs
-    switchDay(0);
+// Dit is de functie die we vanuit main.js aanroepen
+export function initApp() {
+    // 1. Bepaal automatisch de juiste startdag
+    let startDayIndex = 0;
+    const today = new Date();
     
-    // Init Location Grid
-    renderLocations();
-    document.getElementById('categoryFilter').addEventListener('change', (e) => renderLocations(e.target.value));
+    // Stel de trip startdatum in: 15 Februari 2026
+    // Let op: Maanden zijn 0-indexed in JS, dus 1 = Februari
+    const tripStartDate = new Date(2026, 1, 15);
     
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    // Zet beide datums naar middernacht om puur op dagen te vergelijken
+    const current = new Date(today);
+    current.setHours(0, 0, 0, 0);
+    
+    const start = new Date(tripStartDate);
+    start.setHours(0, 0, 0, 0);
+    
+    // Bereken het verschil in dagen
+    const diffTime = current - start;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    // Logica:
+    // Als diffDays < 0 (het is voor de trip): index 0
+    // Als diffDays >= 0 en < lengte (tijdens trip): index = diffDays
+    // Als diffDays >= lengte (na trip): index 0 (of laatste dag, maar 0 is veilige default)
+    if (diffDays >= 0 && diffDays < itineraryData.length) {
+        startDayIndex = diffDays;
     }
-});
 
-// Make switchDay available globally for onclick handlers
-window.switchDay = switchDay;
+    // 2. Initialiseer de tabs op de berekende dag
+    window.switchDay(startDayIndex);
+    
+    // 3. Initialiseer de locaties
+    window.renderLocations();
+    
+    // 4. Koppel de filter dropdown
+    const filterSelect = document.getElementById('categoryFilter');
+    if (filterSelect) {
+        filterSelect.addEventListener('change', (e) => window.renderLocations(e.target.value));
+    }
+}
