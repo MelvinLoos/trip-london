@@ -17,13 +17,11 @@ const itineraryData = [
         title: "Rivier & Engineering",
         weather: "🌦️ Lichte Regen (35%)",
         items: [
-            { time: "09:30", title: "DLR naar Tower Hill", desc: "Limehouse -> Tower Gateway (Direct, 8 min).", type: "Logistiek" },
-            { time: "10:00", title: "Tower of London", desc: "Focus op Witte Toren en Kroonjuwelen (binnen).", type: "Stad & Sfeer", highlight: true, note: "Gebruik Explorer Pass." },
-            { time: "13:00", title: "Lunch & Tower Bridge", desc: "Lunch bij St Katharine Docks. Foto's van de brug.", type: "Eten/Drink" },
-            { time: "14:00", title: "Uber Boat naar Battersea", desc: "Vanaf Tower Pier. Droog sightseeing langs alle highlights (Eye, Parliament).", type: "Logistiek", highlight: true, note: "Perfect bij regen! Warme boottocht van 40 min." },
-            { time: "15:00", title: "Battersea Power Station", desc: "Iconische elektriciteitscentrale. Bekijk de Art Deco turbinehallen (binnen!).", type: "Techniek" },
-            { time: "17:30", title: "Naar Dishoom", desc: "Northern Line: Battersea -> Leicester Square.", type: "Logistiek" },
-            { time: "18:30", title: "Diner bij Dishoom", desc: "Carnaby St. Bombay Café sfeer. Toba is dicht op maandag.", type: "Eten/Drink", highlight: true }
+            { time: "OCHTEND", title: "Tower of London", desc: "Reeds bezocht.", type: "Stad & Sfeer", highlight: false },
+            { time: "13:30", title: "Lunch bij Dickens Inn", desc: "Afgerond. Nu richting de boot!", type: "Eten/Drink" },
+            { time: "15:30", title: "Uber Boat naar Battersea", desc: "Vanaf Tower Pier (vlakbij). Droog sightseeing langs alle highlights.", type: "Logistiek", highlight: true, note: "Pak de RB1 Westbound. +/- 40 min varen." },
+            { time: "16:15", title: "Battersea Power Station", desc: "Iconische elektriciteitscentrale. Bekijk de Art Deco turbinehallen.", type: "Techniek" },
+            { time: "18:30", title: "Diner bij Roti King", desc: "Maleisisch (Rendang/Roti) bij de Power Station (Arches Lane).", type: "Eten/Drink", highlight: true }
         ]
     },
     {
@@ -60,7 +58,7 @@ const locations = [
     { name: "The Barbican Estate", category: "Fotografie", roy: "Brutalistisch, patronen, texturen.", photo: 5, effort: "Gemiddeld", transport: "DLR naar Bank", url: "https://www.barbican.org.uk", lat: 51.5200, lng: -0.0939 },
     { name: "Kings Cross Gasholders", category: "Techniek/Auto's", roy: "Industrieel erfgoed herbestemd.", photo: 4, effort: "Laag", transport: "Northern Line", url: "https://www.gasholderslondon.co.uk/", lat: 51.5365, lng: -0.1245 },
     { name: "Columbia Road Market", category: "Fotografie", roy: "Kleurrijk spektakel, straatfotografie.", photo: 4, effort: "Gemiddeld", transport: "Overground Hoxton", url: "https://columbiaroad.info/", lat: 51.5293, lng: -0.0734 },
-    { name: "Dishoom Carnaby", category: "Eten/Drink", roy: "Bombay Café sfeer, nostalgisch & lekker.", photo: 4, effort: "Laag", transport: "Oxford Circus", url: "https://www.dishoom.com/carnaby/", lat: 51.5125, lng: -0.1396 },
+    { name: "Roti King Battersea", category: "Eten/Drink", roy: "Maleisisch (Rendang/Roti), authentieke smaken.", photo: 4, effort: "Laag", transport: "Battersea Power Station", url: "https://rotiking.com/", lat: 51.4820, lng: -0.1460 },
     { name: "Bali Bali", category: "Eten/Drink", roy: "Traditionele smaken, familie-erfgoed.", photo: 2, effort: "Laag", transport: "Soho", url: "https://balibali.co.uk/", lat: 51.5134, lng: -0.1293 },
     { name: "The Grapes", category: "Eten/Drink", roy: "Historie, maritiem, eigen buurt.", photo: 4, effort: "Laag", transport: "Lopen", url: "https://www.thegrapes.co.uk/", lat: 51.5094, lng: -0.0385 },
     { name: "London City Airport", category: "Logistiek", roy: "Comfortabel aankomen.", photo: 2, effort: "Laag", transport: "DLR", url: "https://www.londoncityairport.com/", lat: 51.5048, lng: 0.0495 },
